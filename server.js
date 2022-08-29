@@ -1,3 +1,7 @@
+if(process.env.Node_ENV!=='production')
+{
+    require('dotenv').parse()
+}
 const express=require('express')
 const app=express()
 const expressLayouts=require('express-ejs-layouts')
@@ -9,6 +13,12 @@ app.set('views',__dirname+'/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+
+const mongoose=require('mongoose')
+const db=mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true})
+db.on('error',error=>console.error(error))
+db.once('open',()=>console.log('connected to mongoose'))
+
 
 app.use('/',indexRouter)
 
