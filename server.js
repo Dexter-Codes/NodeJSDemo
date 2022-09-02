@@ -15,8 +15,8 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 const mongoose=require('mongoose')
-const db=mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useCreateIndex : true})
-db.on('error',error=>console.error(error))
+const db=mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useCreateIndex : true,useUnifiedTopology : true})
+//db.once('error',error=>console.error(error))
 db.once('open',()=>console.log('connected to mongoose'))
 
 
