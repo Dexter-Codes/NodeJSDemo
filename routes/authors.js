@@ -27,7 +27,7 @@ router.get('/',async (req,res)=>
 })
 
 // new Author route
-router.get('/',(req,res)=>
+router.get('/new',(req,res)=>
 {
     res.render('authors/new', {author: new Author() })
 })
@@ -52,20 +52,6 @@ router.post('/',async (req,res)=>
          })
         
     }
-    // author.save((err,newAuthor) => {
-    //     if(err)
-    //     {
-    //         res.render('authors/new', {
-    //         author: author,
-    //         errorMessage: 'Error creating Author'
-    //         })
-    //     }
-    //     else
-    //     {
-    //         res.redirect('authors')
-    //     }
-    // })
-   // res.send(req.body.name)
 })
 
 module.exports=router
