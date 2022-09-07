@@ -6,7 +6,7 @@ const router=express.Router()
 const Book=require('../models/book')
 const Author=require('../models/author')
 const uploadPath=path.join('public', Book.coverImageBasePath)
-const imageMimeTypes=['image/jpeg','image/png','image/gif']
+const imageMimeTypes=['image/jpeg','image/png']
 const upload=multer({
     dest:uploadPath,
     fileFilter :(req,file,callback)=>
@@ -103,7 +103,7 @@ async function renderNewPage(res,book,hasError=false)
         }
         if(hasError)    
         params.errorMessage='Error creating book'
-        res.render('/books/new',params)
+        res.render('books/new',params)
     } 
     catch
     {
