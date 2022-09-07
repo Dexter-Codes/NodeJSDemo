@@ -10,7 +10,7 @@ router.get('/',async (req,res)=>
      books =await book.find().sort({createdBy: desc}).limit(10).exec()   
     } 
     catch
-    {1
+    {
         books=[]
     }
     res.render('index', {books:books})
