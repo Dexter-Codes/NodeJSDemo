@@ -67,10 +67,11 @@ router.post('/',async (req,res)=>
         description: req.body.description,
         //coverImageName: fileName 
     })
-    saveCover(book,req.body.cover)
 
  try 
  {
+    saveCover(book,req.body.cover)
+
     const newBook= book.save()   
 
     res.redirect('books')
@@ -116,7 +117,7 @@ async function renderNewPage(res,book,hasError=false)
 function saveCover(book,coverEncoded)
 {
     if(coverEncoded==null) return
-    const cover=JSON.parse(coverEncoded)
+    const cover= JSON.stringify(coverEncoded)
     if(cover!=null && imageMimeTypes.includes(cover.type))
     {
         book.coverImage=new Buffer.from(cover.data,'base64')
