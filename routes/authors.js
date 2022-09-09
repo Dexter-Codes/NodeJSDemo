@@ -72,11 +72,11 @@ router.get('/:id',async(req,res) =>
     }
 })
 
-router.get('/id:/edit',async (req,res) =>
+router.get('/:id/edit',async (req,res) =>
 {
     try 
     {
-        const author=await Author.findById(req.params.id)
+        const author = await Author.findById(req.params.id)
         res.render('authors/edit', { author:author })    
     } 
     catch 
@@ -111,7 +111,7 @@ router.put('/:id',async(req,res)=>
     }
 })
 
-router.delete(':/id',async(req,res) =>
+router.delete('/:id',async(req,res) =>
 {
     let author
     try 
