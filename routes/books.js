@@ -86,6 +86,36 @@ router.post('/',async (req,res)=>
  }
 })
 
+//view books
+router.get('/:id',async(req,res) =>
+{
+    try 
+    {
+        const book = await Book.findById(req.params.id).populate('author').exec()
+        res.render('books/show',{
+            book: book,
+        })    
+    } 
+    catch
+    {
+        res.redirect('/')
+    }
+})
+
+//edit books
+router.get('/:id/edit',async(req,res) =>
+{
+    try 
+    {
+        const book = await Book.findById(req.params.id)
+        renderEditPage(res,book)   
+    } 
+    catch
+    {
+        res.redirect('/')
+    }
+})
+
 // function removeBookCover(fileName)
 // {
 //     fs.unlink(path.join(uploadPath,fileName),err=>
@@ -94,8 +124,17 @@ router.post('/',async (req,res)=>
 //         console.error(err)
 //     })
 // }
+async function renderNewPage(res,book,form,hasError=false)
+{
+    renderFormPage(res,book,'new',hasError)
+}
 
-async function renderNewPage(res,book,hasError=false)
+async function renderEditPage(res,book,form,hasError=false)
+{
+    renderFormPage(res,book,'edit',hasError)
+}
+
+async function renderFormPage(res,book,form,hasError=false)
 {
     try 
     {
@@ -106,7 +145,7 @@ async function renderNewPage(res,book,hasError=false)
         }
         if(hasError)    
         params.errorMessage='Error creating book'
-        res.render('books/new',params)
+        res.render(`books/${form}`,params)
     } 
     catch
     {
