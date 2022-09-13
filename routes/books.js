@@ -62,7 +62,7 @@ router.post('/',async (req,res)=>
     {
         title: req.body.title,
         author: req.body.author.trim(),
-        publishDate: new Date(req.body.publishDate),
+        publishDate: req.body.publishDate,
         pageCount: req.body.pageCount,
         description: req.body.description,
         //coverImageName: fileName 
@@ -139,8 +139,9 @@ router.put('/:id',async (req,res)=>
         res.redirect(`books/${newBook.id}`)
 
     }
-    catch
+    catch(err)
     {
+        console.log(err)
         if(book!=null)
         {
             renderEditPage(res,book,true)
