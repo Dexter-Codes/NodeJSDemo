@@ -62,7 +62,7 @@ router.post('/',async (req,res)=>
     {
         title: req.body.title,
         author: req.body.author.trim(),
-        publishDate: req.body.publishDate,
+        publishDate: req.body.publishDate.toISOString().split('T')[0],
         pageCount: req.body.pageCount,
         description: req.body.description,
         //coverImageName: fileName 
@@ -108,6 +108,7 @@ router.get('/:id/edit',async(req,res) =>
     try 
     {
         const book = await Book.findById(req.params.id)
+        book.publishDate = book.publishDate.toISOString().split('T')[0]
         renderEditPage(res,book)   
     } 
     catch
