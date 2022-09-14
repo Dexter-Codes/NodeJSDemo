@@ -26,10 +26,10 @@ const db=mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useUn
 //db.on('error',error=>console.error(error))
 //db.once('open',()=>console.log('connected to mongoose'))
 
-
 app.use('/home',indexRouter)
 app.use('/authors',authorRouter)
 app.use('/books',bookRouter)
 app.use('/',userRouter)
+
 
 app.listen(process.env.PORT || 3000)

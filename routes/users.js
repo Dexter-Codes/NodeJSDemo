@@ -1,16 +1,17 @@
 const express=require('express')
 const router=express.Router()
-const Author=require('../models/author')
-const Book = require('../models/book')
 
 
-router.get('/',async (req,res)=>
+
+router.get('/', (req,res)=>
 {
     res.render('/users/login')
 })
 
-router.post('/',async (req,res)=>
+router.post('/', (req,res)=>
 {
     res.render('/home')
 })
+
+module.exports=router
 
