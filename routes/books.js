@@ -136,7 +136,7 @@ router.put('/:id',async (req,res)=>
         }
 
         await book.save()
-        res.redirect(`books/${newBook.id}`)
+        res.redirect(`books/${book.id}`)
 
     }
     catch(err)
