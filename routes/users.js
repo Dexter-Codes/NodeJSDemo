@@ -5,12 +5,12 @@ const router=express.Router()
 
 router.get('/', (req,res)=>
 {
-    res.render('/users/login')
+    res.render('users/login')
 })
 
 router.post('/', (req,res)=>
 {
-    res.render('/home')
+    res.render('/index')
 })
 
 module.exports=router
