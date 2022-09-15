@@ -5,7 +5,7 @@ const router=express.Router()
 
 router.get('/', (req,res)=>
 {
-    res.render('users/login')
+    res.render('users/login',{ layout : 'loginlayout' })
 })
 
 router.post('/', (req,res)=>
