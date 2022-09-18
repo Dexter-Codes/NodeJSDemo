@@ -10,7 +10,7 @@ router.get('/', (req,res)=>
 
 router.get('/go', (req,res)=>
 {
-    res.render('index')
+    res.redirect('/home')
 })
 
 module.exports=router
