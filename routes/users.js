@@ -8,7 +8,7 @@ router.get('/', (req,res)=>
     res.render('users/login',{ layout : 'layouts/loginlayout' })
 })
 
-router.post('/', (req,res)=>
+router.get('/go', (req,res)=>
 {
     res.render('/index')
 })
