@@ -35,12 +35,12 @@ router.post('/login',checkNotAuthenticated, passport.authenticate('local',
     failureFlash:false
 }))
 
-router.get('/register', (req,res)=>
+router.get('/register', checkNotAuthenticated,(req,res)=>
 {
     res.render('users/register',{ layout : 'layouts/loginlayout' })
 })
 
-router.post('/register', async(req,res)=>
+router.post('/register',checkNotAuthenticated, async(req,res)=>
 {
     try 
     {
@@ -60,7 +60,7 @@ router.post('/register', async(req,res)=>
     } 
     catch 
     {
-
+        res.redirect('/register')
     }
 })
 
