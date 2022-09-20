@@ -14,6 +14,10 @@ const User = require('../models/user')
 //     id=>await User.find(user=>user.id===id)
 // )
 
+initialize(passport,
+    async email=>await User.find({email : '${email}'}),
+    async id=>await User.find({id : '${id}'}))
+
 router.get('/', checkAuthenticated, (req,res)=>
 {
     res.render('users/landingpage',{ layout : 'layouts/loginlayout' })
@@ -29,12 +33,7 @@ router.post('/login',checkNotAuthenticated, passport.authenticate('local',
     successRedirect:'/home',
     failureRedirect:'/login',
     failureFlash:false
-}),(req,res)=>
-{
-    initialize(passport,
-        async email=>await User.find({email : req.body.email}),
-        async id=>await User.find({id : email.id}))
-})
+}))
 
 router.get('/register', checkNotAuthenticated,(req,res)=>
 {
@@ -52,12 +51,10 @@ router.post('/register',checkNotAuthenticated, async(req,res)=>
                 password:hashedPassword,
                 name:req.body.name
             }
-
         )
 
         user.save()
-        res.redirect('/login')
-        
+        res.redirect('/login')        
     } 
     catch 
     {
