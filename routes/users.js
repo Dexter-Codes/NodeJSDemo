@@ -43,7 +43,7 @@ router.post('/register',checkNotAuthenticated, async(req,res)=>
 {
     try 
     {
-        const hashedPassword = await brcypt.hash(req.body.password,10)
+        const hashedPassword = await brcypt.hashSync(req.body.password,10)
         const user=new User(
             {
                 email:req.body.email,
@@ -80,7 +80,7 @@ router.get('/go', (req,res)=>
 
         try 
         {
-            if(await brcypt.compare(password.toString(),user.password))
+            if(await brcypt.compareSync(password.toString(),user.password))
             {
                 return done(null,user)
             }
