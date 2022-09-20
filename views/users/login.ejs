@@ -3,7 +3,7 @@
     <%= messages.error %>
 <% } %>  
 
- <form action="/users" method="POST"> 
+ <form action="/login" method="POST"> 
 <div>
     <label>Email</label>
     <input type="email" name="email" value="<%= user.email %>">
@@ -11,6 +11,9 @@
 <div>
     <label>Password</label>
     <input type="password" name="password" value="<%= user.password %>">
-    </div>
+</div>
+<div>
     <button type="submit">Login</a>
+</div>
+    <a href="/register">Register</a>
  </form> 

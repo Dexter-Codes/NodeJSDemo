@@ -6,7 +6,6 @@ const LocalStrategy=require('passport-local').Strategy
 
 const router=express.Router()
 const User = require('../models/user')
-const user = require('../models/user')
 
 
  initialize(passport,
@@ -25,7 +24,7 @@ router.get('/', checkAuthenticated, (req,res)=>
 
 router.get('/login',checkNotAuthenticated, (req,res)=>
 {
-    res.render('users/login',{ layout : 'layouts/loginlayout' })
+    res.render('users/login',{ layout : 'layouts/loginlayout', user : new User()  })
 })
 
 router.post('/login',checkNotAuthenticated, passport.authenticate('local',
@@ -37,7 +36,7 @@ router.post('/login',checkNotAuthenticated, passport.authenticate('local',
 
 router.get('/register', checkNotAuthenticated,(req,res)=>
 {
-    res.render('users/register',{ layout : 'layouts/loginlayout' })
+    res.render('users/register',{ layout : 'layouts/loginlayout', user : new User() })
 })
 
 router.post('/register',checkNotAuthenticated, async(req,res)=>
