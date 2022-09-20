@@ -14,9 +14,7 @@ const User = require('../models/user')
 //     id=>await User.find(user=>user.id===id)
 // )
 
-initialize(passport,
-    async email=>await User.find({email : '${email}'}),
-    async id=>await User.find({id : '${id}'}))
+initialize(passport)
 
 router.get('/', checkAuthenticated, (req,res)=>
 {
@@ -68,10 +66,10 @@ router.get('/go', (req,res)=>
 })
 
 
- async function initialize(passport,getUserByEmail,getUserById)
+ async function initialize(passport)
 {
     const authenticateUser=async (email,password,done)=>{
-        const user= getUserByEmail(email)
+        const user= await User.find({email : email})
         if(user==null)
         {
             return done(null,false,{message:'No user with that email'})
@@ -99,7 +97,7 @@ router.get('/go', (req,res)=>
     passport.use(new LocalStrategy({usernameField:'email', passwordField:'password'},authenticateUser))
     passport.serializeUser((user,done)=>done(null,user.id))
     passport.deserializeUser((id,done)=>{
-        return done(null,getUserById(id))
+        return done(null,user)
     })
 }
 
