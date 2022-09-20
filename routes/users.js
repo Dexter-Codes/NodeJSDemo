@@ -8,9 +8,6 @@ const router=express.Router()
 const User = require('../models/user')
 
 
- initialize(passport,
-    async email=>await User.find({email : email}),
-    async id=>await User.find({id : id}))
 // initializePassport(
 //     passport,
 //     email=>await User.find(user=>user.email===email),
@@ -32,7 +29,12 @@ router.post('/login',checkNotAuthenticated, passport.authenticate('local',
     successRedirect:'/home',
     failureRedirect:'/login',
     failureFlash:false
-}))
+}),(req,res)=>
+{
+    initialize(passport,
+        async email=>await User.find({email : req.body.email}),
+        async id=>await User.find({id : email.id}))
+})
 
 router.get('/register', checkNotAuthenticated,(req,res)=>
 {
