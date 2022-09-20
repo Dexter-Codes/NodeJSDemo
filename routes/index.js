@@ -13,7 +13,13 @@ router.get('/',async (req,res)=>
     {
         books=[]
     }
-    res.render('index', {books:books})
+    res.render('index', {books:books, name:req.user.name})
+})
+
+router.delete('/logout',async(req,res)=>
+{
+    req.logOut()
+    res.redirect('/login')
 })
 
 module.exports=router
