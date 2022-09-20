@@ -66,10 +66,10 @@ router.get('/go', (req,res)=>
 })
 
 
- async function initialize(passport)
+  function initialize(passport)
 {
     const authenticateUser=async (email,password,done)=>{
-        const user= await User.find({email : email})
+        const user= await User.find({[email] : email})
         if(user==null)
         {
             return done(null,false,{message:'No user with that email'})
