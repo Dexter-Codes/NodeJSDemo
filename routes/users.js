@@ -80,6 +80,8 @@ router.get('/go', (req,res)=>
 
         try 
         {
+            console.log(user.password)
+            console.log(password)
             if(await brcypt.compareSync(password.toString(),user.password))
             {
                 return done(null,user)
