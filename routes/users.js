@@ -9,8 +9,8 @@ const User = require('../models/user')
 
 
  initialize(passport,
-    async email=>await User.find(user=>user.email===email),
-    async id=>await User.find(user=>user.id===id))
+    async email=>await User.find({email : email}),
+    async id=>await User.find({id : id}))
 // initializePassport(
 //     passport,
 //     email=>await User.find(user=>user.email===email),
