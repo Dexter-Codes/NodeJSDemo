@@ -77,9 +77,6 @@ router.get('/go', (req,res)=>
 
         try 
         {
-            console.log(user.email)
-            console.log(user.password)
-            console.log(password)
             if(await brcypt.compareSync(password,user.password))
             {
                 return done(null,user)
@@ -96,8 +93,9 @@ router.get('/go', (req,res)=>
     }
     passport.use(new LocalStrategy({usernameField:'email', passwordField:'password'},authenticateUser))
     passport.serializeUser((user,done)=>done(null,user.id))
-    passport.deserializeUser((id,done)=>{
-        return done(null,user)
+    passport.deserializeUser(async(id,done)=>{
+        console.log(id)
+        return done(null,await User.findOne({id : id}))
     })
 }
 
