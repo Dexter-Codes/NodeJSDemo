@@ -16,7 +16,7 @@ router.get('/',async (req,res)=>
     res.render('index', {books:books, name:req.user.name})
 })
 
-router.post('/logout',(req,res,next)=>
+router.delete('/logout',(req,res,next)=>
 {
         req.logOut((err)=>{
             if(err)
