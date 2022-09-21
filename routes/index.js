@@ -16,7 +16,7 @@ router.get('/',async (req,res)=>
     res.render('index', {books:books, name:req.user.name})
 })
 
-router.delete('/logout',async(req,res)=>
+router.post('/logout',(req,res)=>
 {
     req.logOut()
     res.redirect('/login')
