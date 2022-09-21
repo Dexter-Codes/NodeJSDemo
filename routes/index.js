@@ -18,13 +18,20 @@ router.get('/',async (req,res)=>
 
 router.delete('/logout',(req,res,next)=>
 {
-        req.logOut((err)=>{
-            if(err)
-            {
-                return next(err)
-            }
-            res.redirect('/login')
-        })
+        // req.logOut((err)=>{
+        //     if(err)
+        //     {
+        //         return next(err)
+        //     }
+        //     res.redirect('/login')
+        // })
+        req.session.user = null
+        req.session.save(function (err) {
+          if (err) next(err)
+
+          res.redirect('/login')
     })
+
+})
 
 module.exports=router

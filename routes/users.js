@@ -60,12 +60,6 @@ router.post('/register',checkNotAuthenticated, async(req,res)=>
     }
 })
 
-router.get('/go', (req,res)=>
-{
-    res.redirect('/home')
-})
-
-
   function initialize(passport)
 {
     const authenticateUser=async (email,password,done)=>{
