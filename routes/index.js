@@ -16,16 +16,15 @@ router.get('/',async (req,res)=>
     res.render('index', {books:books, name:req.user.name})
 })
 
-router.post('/',(req,res)=>
+router.post('/logout',(req,res,next)=>
 {
-    try {
-        req.logOut()
-        res.redirect('/login')
-    } catch (error) {
-        console.log(error)
-        res.redirect('/home')
-    }
-   
-})
+        req.logOut((err)=>{
+            if(err)
+            {
+                return next(err)
+            }
+            res.redirect('/login')
+        })
+    })
 
 module.exports=router
