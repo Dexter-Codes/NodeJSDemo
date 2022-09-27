@@ -16,7 +16,7 @@ router.get('/',async (req,res)=>
     res.render('index', {books:books, name:req.user.name})
 })
 
-router.delete('/logout',(req,res,next)=>
+router.get('/logout',(req,res)=>
 {
         // req.logOut((err)=>{
         //     if(err)
@@ -25,13 +25,18 @@ router.delete('/logout',(req,res,next)=>
         //     }
         //     res.redirect('/login')
         // })
-        req.session.user = null
-        req.session.save(function (err) {
-          if (err) next(err)
+        // req.session.user = null
+        // req.session.save(function (err) {
+        //   if (err) next(err)
 
-          res.redirect('/login')
+        req.session.destroy((err)=>{
+            if(err)
+            {
+                return console.log(err)
+            }
+            res.redirect('/')
+        })
+          
     })
-
-})
 
 module.exports=router
