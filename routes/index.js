@@ -28,7 +28,7 @@ router.get('/logout',(req,res)=>
         // req.session.user = null
         // req.session.save(function (err) {
         //   if (err) next(err)
-
+        console.log(req.session)
         req.session.destroy((err)=>{
             if(err)
             {
