@@ -29,13 +29,15 @@ router.get('/logout',(req,res)=>
         // req.session.save(function (err) {
         //   if (err) next(err)
         console.log(req.session)
-        req.session.destroy((err)=>{
-            if(err)
-            {
-                return console.log(err)
-            }
-            res.redirect('/')
-        })
+        req.logOut()
+        res.redirect('/')
+        // req.session.destroy((err)=>{
+        //     if(err)
+        //     {
+        //         return console.log(err)
+        //     }
+        //     res.redirect('/')
+        // })
           
     })
 
