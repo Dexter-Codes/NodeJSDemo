@@ -16,29 +16,29 @@ router.get('/',async (req,res)=>
     res.render('index', {books:books, name:req.user.name})
 })
 
-router.get('/logout',(req,res)=>
-{
-        // req.logOut((err)=>{
-        //     if(err)
-        //     {
-        //         return next(err)
-        //     }
-        //     res.redirect('/login')
-        // })
-        // req.session.user = null
-        // req.session.save(function (err) {
-        //   if (err) next(err)
-        console.log(req.session)
-        req.logOut()
-        res.redirect('/')
-        // req.session.destroy((err)=>{
-        //     if(err)
-        //     {
-        //         return console.log(err)
-        //     }
-        //     res.redirect('/')
-        // })
+// router.get('/logout',(req,res)=>
+// {
+//         // req.logOut((err)=>{
+//         //     if(err)
+//         //     {
+//         //         return next(err)
+//         //     }
+//         //     res.redirect('/login')
+//         // })
+//         // req.session.user = null
+//         // req.session.save(function (err) {
+//         //   if (err) next(err)
+//         console.log(req.session)
+//         req.logOut()
+//         res.redirect('/')
+//         // req.session.destroy((err)=>{
+//         //     if(err)
+//         //     {
+//         //         return console.log(err)
+//         //     }
+//         //     res.redirect('/')
+//         // })
           
-    })
+//     })
 
 module.exports=router
